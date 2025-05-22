@@ -1,5 +1,10 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
+# Mini ERP para Controle de Pedidos
+
+Este projeto é uma solução de Mini ERP desenvolvida como parte de um teste técnico. O sistema permite o gerenciamento de Produtos, Pedidos, Cupons e Estoque, utilizando Laravel para o backend.
+
+<!-- Você pode manter os badges do Laravel se quiser, ou remover/substituir por badges do seu próprio repositório quando ele estiver no GitHub -->
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
@@ -7,55 +12,106 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Funcionalidades Principais
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+*   Cadastro e atualização de Produtos (com nome, preço, variações).
+*   Controle de Estoque associado aos produtos e suas variações.
+*   Sistema de Carrinho de Compras gerenciado por sessão.
+*   Cálculo de Frete dinâmico baseado no subtotal do pedido.
+*   Verificação de CEP utilizando a API ViaCEP.
+*   Gerenciamento de Cupons de Desconto (com validade e valor mínimo).
+*   Finalização de Pedidos com envio de e-mail de confirmação.
+*   Webhook para atualização de status de pedidos.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tecnologias Utilizadas
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+*   **Backend:** PHP 8.2 (ou superior, conforme `composer.json`), Laravel 11.x
+*   **Banco de Dados:** MySQL
+*   **Frontend (sugerido/compatível):** Bootstrap, HTML, CSS, JavaScript
+*   **Gerenciamento de Dependências:** Composer (PHP), NPM (JavaScript)
 
-## Learning Laravel
+## Pré-requisitos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+*   PHP >= 8.2 (verifique a versão exata do seu projeto no `composer.json`)
+*   Composer
+*   Node.js e NPM
+*   Servidor MySQL
+*   Um servidor web como Apache ou Nginx (para produção), ou use `php artisan serve` para desenvolvimento.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Instruções de Instalação e Configuração
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Siga os passos abaixo para configurar o ambiente de desenvolvimento:
 
-## Laravel Sponsors
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/AndreGava/mini_erp.git
+    cd mini_erp
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2.  **Instale as dependências do Composer:**
+    ```bash
+    composer install
+    ```
 
-### Premium Partners
+3.  **Copie o arquivo de ambiente e configure suas variáveis:**
+    ```bash
+    cp .env.example .env
+    ```
+    Abra o arquivo `.env` e configure as variáveis do banco de dados (`DB_HOST=127.0.0.1`, `DB_PORT=3306`, `DB_DATABASE=mini_erp`, `DB_USERNAME=root`, `DB_PASSWORD=SUA_SENHA_DO_MYSQL_AQUI`) e outras que precisar (como `MAIL_MAILER`, `MAIL_HOST`, etc., para envio de e-mail).
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+4.  **Gere a chave da aplicação Laravel:**
+    ```bash
+    php artisan key:generate
+    ```
 
-## Contributing
+5.  **Execute as Migrations (e Seeders, se houver dados iniciais):**
+    Para criar a estrutura do banco de dados:
+    ```bash
+    php artisan migrate
+    ```
+    Se você tiver seeders para popular o banco com dados iniciais/de teste (o projeto possui factories que podem ser usadas via seeders):
+    ```bash
+    php artisan db:seed
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    **Alternativa (Dump SQL):** Se você preferir usar um arquivo de dump SQL para criar a estrutura e/ou popular o banco (um arquivo `database_dump_estrutura.sql` ou `database_dump_com_dados.sql` pode estar incluído no repositório):
+    ```bash
+    # Exemplo de como importar um dump SQL (o comando pode variar)
+    # mysql -u root -p mini_erp < nome_do_arquivo_dump.sql
+    ```
+    *Nota: Recomenda-se usar as migrations como método principal.*
 
-## Code of Conduct
+6.  **Instale as dependências do NPM e compile os assets (se aplicável para o frontend):**
+    ```bash
+    npm install
+    npm run dev 
+    # ou npm run build para produção
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+7.  **Inicie o servidor de desenvolvimento Laravel:**
+    ```bash
+    php artisan serve
+    ```
+    A aplicação (API) estará disponível em `http://localhost:8000`.
 
-## Security Vulnerabilities
+## Endpoints da API (Exemplos)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+*   `POST /api/produtos` - Cria um produto
+*   `PUT /api/produtos/{id}` - Atualiza um produto
+*   `POST /api/pedidos` - Cria um pedido (simula a compra)
+*   `POST /api/cupons` - Cria um cupom
+*   `POST /api/pedidos/webhook` - Webhook para status de pedidos
+*   Consulte `routes/api.php` para a lista completa de rotas.
 
+## (Opcional) Executando os Testes
+
+O projeto possui testes de feature. Você pode executá-los com:
+```bash
+php artisan test
+```
+
+---
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+(Você pode manter esta licença do Laravel ou adicionar a sua própria se desejar).
