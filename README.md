@@ -127,4 +127,5 @@ Este projeto utiliza a licença MIT, assim como o framework Laravel. Você pode 
 
 ## Contato
 
-Para dúvidas ou contribuições, entre em contato com o desenvolvedor responsável pelo projeto.
+Para dúvidas ou contribuições, entre em contato com o desenvolvedor responsável pelo projeto. 
+André Gava
