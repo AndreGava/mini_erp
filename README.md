@@ -1,3 +1,5 @@
+PT/EN
+
 # Mini ERP para Controle de Pedidos
 
 Este projeto é uma solução de Mini ERP desenvolvida para gerenciar o controle de pedidos, produtos, estoque e cupons de desconto. Foi criado como parte de um teste técnico utilizando o framework Laravel para o backend, oferecendo uma API robusta para operações comuns em sistemas de vendas.
@@ -128,4 +130,121 @@ Este projeto utiliza a licença MIT, assim como o framework Laravel. Você pode 
 ## Contato
 
 Para dúvidas ou contribuições, entre em contato com o desenvolvedor responsável pelo projeto. 
+André Gava
+
+-------------------------------------------------------------------------------------------------
+
+Aqui está a tradução para o inglês do seu texto sobre o Mini ERP para Controle de Pedidos.
+
+-----
+
+### Mini ERP for Order Management
+
+This project is a Mini ERP solution developed to manage orders, products, inventory, and discount coupons. It was created as part of a technical test using the Laravel framework for the backend, providing a robust API for common operations in sales systems.
+
+### Key Features
+
+  * **Product Management:** Create, update, and manage products, including variations and prices.
+  * **Detailed Inventory Control:** Manage inventory levels associated with each product and its variations.
+  * **Shopping Cart System:** A session-based shopping cart for users.
+  * **Dynamic Shipping Calculation:** Calculates shipping costs based on the order subtotal.
+  * **Zip Code Validation:** Validates and queries zip codes using the ViaCEP API.
+  * **Discount Coupon Management:** Manages discount coupons with control over validity and minimum order value for application.
+  * **Order Checkout:** Finalizes orders with automatic email confirmation sent to the customer.
+  * **Webhook for Status Updates:** A webhook for automatic updates of order statuses.
+
+### Technologies Used
+
+  * **Backend:** PHP 8.2 or higher, Laravel 11.x
+  * **Database:** MySQL
+  * **Frontend (compatible):** Bootstrap, HTML, CSS, JavaScript
+  * **Dependency Management:** Composer (PHP), NPM (JavaScript)
+
+### Prerequisites for Setup
+
+  * PHP 8.2 or higher
+  * Composer installed
+  * Node.js and NPM installed
+  * MySQL server configured
+  * Web server (Apache, Nginx) for production or use of Laravel's built-in server for development
+
+### Installation and Configuration Instructions
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/AndreGava/mini_erp.git
+    cd mini_erp
+    ```
+2.  Install PHP dependencies via Composer:
+    ```bash
+    composer install
+    ```
+3.  Copy the environment file and configure variables:
+    ```bash
+    cp .env.example .env
+    ```
+4.  Edit the `.env` file to configure the database and other variables, such as:
+    ```ini
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=mini_erp
+    DB_USERNAME=root
+    DB_PASSWORD=YOUR_MYSQL_PASSWORD_HERE
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.example.com
+    MAIL_PORT=587
+    MAIL_USERNAME=your_email@example.com
+    MAIL_PASSWORD=your_password
+    MAIL_ENCRYPTION=tls
+    ```
+5.  Generate the Laravel application key:
+    ```bash
+    php artisan key:generate
+    ```
+6.  Run migrations to create the database structure:
+    ```bash
+    php artisan migrate
+    ```
+7.  (Optional) Run seeders to populate the database with initial data:
+    ```bash
+    php artisan db:seed
+    ```
+8.  Install JavaScript dependencies and compile assets:
+    ```bash
+    npm install
+    npm run dev
+    ```
+9.  Start the development server:
+    ```bash
+    php artisan serve
+    ```
+
+The application will be available at http://localhost:8000.
+
+### Main API Endpoints
+
+  * `POST /api/produtos` - Creates a new product.
+  * `PUT /api/produtos/{id}` - Updates an existing product.
+  * `POST /api/pedidos` - Creates a new order (simulates a purchase).
+  * `POST /api/cupons` - Creates a new discount coupon.
+  * `POST /api/pedidos/webhook` - Endpoint for the order status update webhook.
+
+Consult the `routes/api.php` file for the complete list of available routes.
+
+### Running Tests
+
+The project includes automated feature tests. To run them, use the command:
+
+```bash
+php artisan test
+```
+
+### License
+
+This project uses the MIT license, just like the Laravel framework. You can keep this license or add your own as needed.
+
+### Contact
+
+For questions or contributions, please contact the developer responsible for the project.
+
 André Gava
